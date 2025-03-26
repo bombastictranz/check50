@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/home -->
+<html lang="en-us" data-bybit-channel-name="4WvpuIjV7Gztmodfx23vD" data-bybit-is-default-wallet="true" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" async="" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/analytics.min.js.download"></script><script data-ot-ignore="" type="text/javascript" class="optanon-category-C0001">
+    (new MutationObserver(function(mutationRecords) {
+        Array.prototype.forEach.call(mutationRecords, function(mutationRecord) {
+            Array.prototype.forEach.call(mutationRecord.addedNodes, function(addedNode) {
+                if (!addedNode || !addedNode.tagName || "script" !== addedNode.tagName.toLowerCase()) {
+                    return;
+                }
+
+                var isWebpackChunk = !addedNode.hasAttribute('data-ot-ignore') && addedNode.hasAttribute('data-webpack');
+                if (isWebpackChunk) {
+                    addedNode.setAttributeNode(document.createAttribute('data-ot-ignore'));
+                    addedNode.removeAttribute("class");
+                    addedNode.setAttribute("class", "optanon-category-C0001");
+                    addedNode.removeAttribute("type");
+                }
+
+                var isGTM = addedNode.src && addedNode.src.startsWith('https://www.googletagmanager.com/');
+                if (!isGTM) {
+                    return;
+                }
+
+                var isPlainText = addedNode.getAttribute('type') === 'text/plain';
+                if (!isPlainText) {
+                    return;
+                }
+
+                var replacement = document.createElement('script');
+                replacement.setAttributeNode(document.createAttribute('data-ot-ignore'));
+                replacement.setAttribute('class', 'optanon-category-C0001');
+                replacement.setAttribute('src', addedNode.src, true);
+                addedNode.remove();
+                document.head.appendChild(replacement)
+
+            });
+        })
+    })).observe(document.documentElement || document.body, {
+        childList: !0,
+        subtree: !0,
+        attributes: !0,
+        attributeFilter: ["src"]
+    });
+</script>
+<script type="text/javascript" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/OtAutoBlock.js.download"></script>
+<script src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/otSDKStub.js.download" type="text/javascript" charset="UTF-8" data-domain-script="fa169e97-be64-4cc1-bad3-9534590f9a30"></script>
+<script type="text/javascript">
+var optanonLoaded = false;
+function OptanonWrapper(){
+  if (!optanonLoaded) {
+    var optanonLoadedEvent = new CustomEvent('OptanonLoaded');
+    window.dispatchEvent(optanonLoadedEvent);
+    optanonLoaded = true;
+  }
+};
+</script><title>Course | CS50's Introduction to Programming with Python | edX</title><meta name="viewport" content="width=device-width,initial-scale=1"><style type="text/css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+  --fa-font-light: normal 300 1em/1 "Font Awesome 6 Pro";
+  --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Pro";
+  --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-regular: normal 400 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-light: normal 300 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-thin: normal 100 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-regular: normal 400 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-light: normal 300 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-thin: normal 100 1em/1 "Font Awesome 6 Sharp Duotone";
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+  overflow: visible;
+  box-sizing: content-box;
+}
+
+.svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285705em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  top: 0.25em;
+}
+.svg-inline--fa.fa-fw {
+  width: var(--fa-fw-width, 1.25em);
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-counter-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: 0.625em;
+  line-height: 0.1em;
+  vertical-align: 0.225em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+  line-height: 0.0833333337em;
+  vertical-align: 0.125em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+  line-height: 0.0714285718em;
+  vertical-align: 0.0535714295em;
+}
+
+.fa-lg {
+  font-size: 1.25em;
+  line-height: 0.05em;
+  vertical-align: -0.075em;
+}
+
+.fa-xl {
+  font-size: 1.5em;
+  line-height: 0.0416666682em;
+  vertical-align: -0.125em;
+}
+
+.fa-2xl {
+  font-size: 2em;
+  line-height: 0.03125em;
+  vertical-align: -0.1875em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: var(--fa-li-margin, 2.5em);
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: calc(-1 * var(--fa-li-width, 2em));
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.08em);
+  padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+}
+
+.fa-pull-left {
+  float: left;
+  margin-right: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right {
+  float: right;
+  margin-left: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  animation-name: fa-beat;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  animation-name: fa-bounce;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  animation-name: fa-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  animation-name: fa-beat-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  animation-name: fa-flip;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  animation-name: fa-shake;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  animation-name: fa-spin;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 2s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  animation-name: fa-spin;
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+.fa-bounce,
+.fa-fade,
+.fa-beat-fade,
+.fa-flip,
+.fa-pulse,
+.fa-shake,
+.fa-spin,
+.fa-spin-pulse {
+    animation-delay: -1ms;
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+    transition-delay: 0s;
+    transition-duration: 0s;
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-shake {
+  0% {
+    transform: rotate(-15deg);
+  }
+  4% {
+    transform: rotate(15deg);
+  }
+  8%, 24% {
+    transform: rotate(-18deg);
+  }
+  12%, 28% {
+    transform: rotate(18deg);
+  }
+  16% {
+    transform: rotate(-22deg);
+  }
+  20% {
+    transform: rotate(22deg);
+  }
+  32% {
+    transform: rotate(-12deg);
+  }
+  36% {
+    transform: rotate(12deg);
+  }
+  40%, 100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  transform: rotate(var(--fa-rotate-angle, 0));
+}
+
+.fa-stack {
+  display: inline-block;
+  vertical-align: middle;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: var(--fa-stack-z-index, auto);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.sr-only,
+.fa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:not(:focus),
+.fa-sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}</style><link rel="shortcut icon" href="https://edx-cdn.org/v3/prod/favicon.ico" type="image/x-icon"><script src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/27831640741.js.download"></script><meta name="robots" content="noindex"><script defer="defer" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/runtime.cd9f7a180e30f3794e52.js.download" data-ot-ignore="" class="optanon-category-C0001"></script><script defer="defer" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/613.bcd79024cbb32d81ca4f.js.download" data-ot-ignore="" class="optanon-category-C0001"></script><script defer="defer" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/app.adf499f39e8ea0fc7eca.js.download" data-ot-ignore="" class="optanon-category-C0001"></script><link href="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/613.bcd79024cbb32d81ca4f.css" rel="stylesheet"><link href="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/app.adf499f39e8ea0fc7eca.css" rel="stylesheet"><style>.edx-cookie-banner-wrapper { display: none; }</style><script src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/otBannerSdk.js.download" async="" type="text/javascript"></script><link rel="shortcut icon" href="https://edx-cdn.org/v3/prod/favicon.ico" type="image/x-icon" data-react-helmet="true"></head><body><div id="root"><div data-testid="redux-provider"><div data-testid="browser-router"><div> <button type="button" class="p-0 sr-only sr-only-focusable btn btn-link btn-inline">Launch tour</button><header class="learning-header"><a class="sr-only sr-only-focusable" href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/home#main-content">Skip to main content.</a><div class="px-4 py-2.5 d-flex align-items-center learning-header-container"><a href="https://courses.edx.org/dashboard" class="logo"><img class="d-block" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/logo.svg" alt="edX"></a><div class="flex-grow-1 course-title-lockup" style="line-height: 1;"><span class="d-block small m-0">HarvardX CS50P</span><span class="d-block m-0 font-weight-bold course-title">CS50's Introduction to Programming with Python</span></div><a class="text-gray-700" href="https://support.edx.org/">Help</a><div id="notificationIcon"><button aria-label="Notification bell icon" class="btn-icon btn-icon-light btn-icon-inline mr-1 notification-button ml-4" type="button" data-testid="notification-bell-icon"><span class="btn-icon__icon-container"><span class="pgn__icon btn-icon__icon text-primary-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" focusable="false" aria-hidden="true"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V2.5h-3v2.18C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z" fill="currentColor"></path></svg></span></span></button></div><div data-testid="dropdown" class="pgn__dropdown pgn__dropdown-light user-dropdown ml-3 dropdown"><button aria-haspopup="true" aria-expanded="false" id="user-dropdown" type="button" class="dropdown-toggle btn btn-outline-primary"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-user" class="svg-inline--fa fa-circle-user fa-lg " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M399 384.2C376.9 345.8 335.4 320 288 320l-64 0c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z"></path></svg></button><div x-placement="bottom-end" aria-labelledby="user-dropdown" class="dropdown-menu-right zIndex-2 dropdown-menu" style="position: absolute; top: 0px; left: 0px; margin: 0px; opacity: 0; pointer-events: none;"><a data-testid="user-item" href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/home#" class="user-info__menu-item pgn__dropdown-item dropdown-item" role="button"><img class="pgn__avatar pgn__avatar-sm mr-2" data-testid="avatar-icon" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/95ec738c0b7faac5b5c9126794446bbd.svg" alt="Romeo Rosete"><div class="text-left"><span class="h5 d-block">Romeo Rosete</span><span class="small d-block">bombastictranz@gmail.com</span></div></a><a href="https://courses.edx.org/dashboard" class="pgn__dropdown-item dropdown-item">Dashboard</a><a href="https://careers.edx.org/" class="pgn__dropdown-item dropdown-item">Career<span class="px-2 mx-2 badge badge-warning">New</span></a><a href="https://profile.edx.org/u/bombastictranz" class="pgn__dropdown-item dropdown-item">Profile</a><a href="https://account.edx.org/" class="pgn__dropdown-item dropdown-item">Account</a><a href="https://checkout.edx.org/orders" class="pgn__dropdown-item dropdown-item">Order History</a><a href="https://courses.edx.org/logout" class="pgn__dropdown-item dropdown-item">Sign Out</a></div></div></div></header><main class="d-flex flex-column flex-grow-1"><div id="courseTabsNavigation" class="course-tabs-navigation mb-3"><div class="container-xl"><div class="nav-bar"><div class="nav-menu"><nav aria-label="Course Material" class="nav flex-nowrap nav-underline-tabs"><a class="nav-item flex-shrink-0 nav-link active" href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/home" style="">Course</a><a class="nav-item flex-shrink-0 nav-link" href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/dates" style="">Dates</a><a class="nav-item flex-shrink-0 nav-link" href="https://courses.edx.org/courses/course-v1:HarvardX+CS50P+Python/462714db74dd4ea89da77ace66dce873/" style="">Discussion</a><a class="nav-item flex-shrink-0 nav-link" href="https://courses.edx.org/courses/course-v1:HarvardX+CS50P+Python/031bdda1336e4e2bb592bc0f85938321/" style="">FAQs</a><a class="nav-item flex-shrink-0 nav-link" href="https://courses.edx.org/courses/course-v1:HarvardX+CS50P+Python/2491c7cb9dcd49a08454a6475b20755e/" style="">Progress</a><div class="nav-item flex-shrink-0" style="position: absolute; left: 0px; pointer-events: none; visibility: hidden; max-width: 100%;"><div data-testid="dropdown" class="pgn__dropdown pgn__dropdown-light h-100 dropdown"><button aria-haspopup="true" aria-expanded="false" id="learn.course.tabs.navigation.overflow.menu" type="button" class="nav-link h-100 dropdown-toggle btn btn-link">More...</button></div></div></nav></div><div class="search-toggle"><div class="courseware-search-toggle"><button aria-label="Search within this course" data-testid="courseware-search-open-button" type="button" class="p-1 mt-2 mr-2 btn btn-outline-primary btn-sm">Content search<span class="pgn__icon pgn__icon__sm btn-icon-after"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" focusable="false" aria-hidden="true"><path d="M7 9H2V7h5v2zm0 3H2v2h5v-2zm13.59 7-3.83-3.83c-.8.52-1.74.83-2.76.83-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5c0 1.02-.31 1.96-.83 2.75L22 17.59 20.59 19zM17 11c0-1.65-1.35-3-3-3s-3 1.35-3 3 1.35 3 3 3 3-1.35 3-3zM2 19h10v-2H2v2z" fill="currentColor"></path></svg></span></button></div></div></div></div></div><div id="main-content" class="container-xl"><div class="d-flex flex-column justify-content-center"></div><div data-learner-type="b2c_learner" class="row w-100 mx-0 my-3 justify-content-between"><div class="col-12 col-sm-auto p-0"><div role="heading" aria-level="1" class="h2">CS50's Introduction to Programming with Python</div></div></div><div class="row course-outline-tab"><div class="col-12"></div><div class="col col-12 col-md-8"><div data-testid="start-resume-card" tabindex="-1" class="mb-3 raised-card pgn__card pgn__card-light card"><div class="pgn__card-header"><div class="pgn__card-header-content"><div class="pgn__card-header-title-md">Pick up where you left off</div></div><div class="pgn__card-header-actions"><a href="https://courses.edx.org/courses/course-v1:HarvardX+CS50P+Python/jump_to/block-v1:HarvardX+CS50P+Python+type@html+block@da9d5b96d05b4bd9b3af4d9070ee94df" class="btn btn-brand btn-block">Resume course</a></div></div><div class="pgn__card-footer vertical"></div></div><div id="expand-button-row" class="row w-100 m-0 mb-3">
+<div class="alert alert-warning border">
+    <p>
+        Hello, world! This is CS50's introduction to programming with Python.
+    </p>
+    <p class="mb-0">
+        You are welcome to take this course at your own pace, starting whenever you'd like. So no worries if this is your first time here!
+    </p>
+</div>
+
+<p>
+    Much awaits you, so here's how to begin!
+</p>
+
+<p>
+    First join some of CS50's <a href="https://cs50.harvard.edu/python/communities">communities</a>, so that you can reach out to classmates and staff with questions:
+</p>
+
+<ol>
+    <li>
+        If you're the <strong>YouTube</strong> type:
+        <ul>
+            <li>subscribe to CS50's channel at <a href="http://www.youtube.com/subscription_center?add_user=cs50tv">youtube.com/cs50</a></li>
+        </ul>
+    </li>
+    <li>
+        If you're the <strong>TikTok</strong> type:
+        <ul>
+            <li>follow <a href="https://www.tiktok.com/@cs50">@cs50</a></li>
+            <li>follow <a href="https://www.tiktok.com/@davidjmalan">@davidjmalan</a></li>
+        </ul>
+    </li>
+    <li>
+        If you're the <strong>LinkedIn</strong> type:
+        <ul>
+            <li>connect with (and say hello to!) David at <a href="https://www.linkedin.com/in/malan">linkedin.com/in/malan</a></li>
+        </ul>
+    </li>
+    <li>
+        If you're the <strong>Instagram</strong> type:
+        <ul>
+            <li>follow <a href="https://instagram.com/cs50">cs50</a></li>
+            <li>follow (and say hello to!) <a href="https://instagram.com/davidjmalan">davidjmalan</a></li>
+        </ul>
+    </li>
+    <li>
+        If you're the <strong>Twitter</strong> type:
+        <ul>
+            <li>follow <a href="https://twitter.com/cs50">@cs50</a></li>
+            <li>say hello to classmates with hashtag <a href="https://twitter.com/intent/tweet?hashtags=cs50">#cs50</a></li>
+            <li>follow (and say hello to!) <a href="https://twitter.com/davidjmalan">@davidjmalan</a></li>
+        </ul>
+    </li>
+    <li>
+        If you're the <strong>Discord</strong> type:
+        <ul>
+            <li>join CS50's Discord server at <a href="https://discord.gg/cs50">discord.gg/cs50</a></li>
+        </ul>
+    </li>
+    <li>
+        If you're the <strong>Facebook</strong> type:
+        <ul>
+            <li>join CS50's Facebook Group at <a href="https://www.facebook.com/groups/cs50">facebook.com/groups/cs50</a></li>
+            <li>like CS50's Facebook Page at <a href="https://www.facebook.com/cs50">facebook.com/cs50</a></li>
+            <li>follow (and say hello to!) David at <a href="https://www.facebook.com/dmalan">facebook.com/dmalan</a></li>
+        </ul>
+    </li>
+    <li>
+        If you're the <strong>Snapchat</strong> type:
+        <ul>
+            <li>add <a href="https://www.snapchat.com/add/cs50">cs50</a></li>
+        </ul>
+    </li>
+</ol>
+
+
+<div>
+<p>
+    After that, watch each of the course's ten lectures and submit the course's problem sets and final project:
+</p>
+<ol>
+    <li>Watch <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@744dad66fcce478a92fb1073b3d373fa/block-v1:HarvardX+CS50P+Python+type@vertical+block@263dc9ef9c66490aa5511e9f8633de34">Week 0</a>'s lecture on Functions, Variables. Submit <a href="https://cs50.harvard.edu/python/2022/psets/0/">Problem Set 0</a>.</li>
+    <li>Watch <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@d25e27c90c304b0293d1f8dbda47c1b6/block-v1:HarvardX+CS50P+Python+type@vertical+block@298bd11c8ce4404b9d9b4bf12f4b1bf4">Week 1</a>'s lecture on Conditionals. Submit <a href="https://cs50.harvard.edu/python/2022/psets/1/">Problem Set 1</a>.</li>
+    <li>Watch <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@59c86cd0b84f463d814d6fd46a2c7eea/block-v1:HarvardX+CS50P+Python+type@vertical+block@d030524223b84aaa86e5306856d4b028">Week 2</a>'s lecture on Loops. Submit <a href="https://cs50.harvard.edu/python/2022/psets/2/">Problem Set 2</a>.</li>
+    <li>Watch <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@bd6e4b312f2b4e8d9e89ec63708a367a/block-v1:HarvardX+CS50P+Python+type@vertical+block@cb3e9f779e7a46ff9af9a64d3efbee01">Week 3</a>'s lecture on Exceptions. Submit <a href="https://cs50.harvard.edu/python/2022/psets/3/">Problem Set 3</a>.</li>
+    <li>Watch <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@ea6fc5c250bc4fc786575db3b93611a5/block-v1:HarvardX+CS50P+Python+type@vertical+block@41edb525ad5547e1909462de5cc3fcd2">Week 4</a>'s lecture on Libraries. Submit <a href="https://cs50.harvard.edu/python/2022/psets/4/">Problem Set 4</a>.</li>
+    <li>Watch <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@b9adc42a712943e798c96981fa2842f5/block-v1:HarvardX+CS50P+Python+type@vertical+block@6b8bcea7026f4ada90beb7722be8651a">Week 5</a>'s lecture on Unit Tests. Submit <a href="https://cs50.harvard.edu/python/2022/psets/5/">Problem Set 5</a>.</li>
+    <li>Watch <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@21490b9cab9d44f5b67a3b0999aecfc3/block-v1:HarvardX+CS50P+Python+type@vertical+block@0f4978a443c24dc2acf34411b27a30ab">Week 6</a>'s lecture on File I/O. Submit <a href="https://cs50.harvard.edu/python/2022/psets/6/">Problem Set 6</a>.</li>
+    <li>Watch <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@5b8a1290b6d343078c21bba7944f7792/block-v1:HarvardX+CS50P+Python+type@vertical+block@f336474f14a74d73812488866be77274">Week 7</a>'s lecture on Regular Expressions. Submit <a href="https://cs50.harvard.edu/python/2022/psets/7/">Problem Set 7</a>.</li>
+    <li>Watch <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@2e3c5785a8484c8988f8fac546929f35/block-v1:HarvardX+CS50P+Python+type@vertical+block@7e3889c2392c4ffbbe935912bdd35b8d">Week 8</a>'s lecture on Object-Oriented Programming. Submit <a href="https://cs50.harvard.edu/python/2022/psets/8/">Problem Set 8</a>.</li>
+    <li>Watch <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@1e2042142d3d4008a6b129c3c3f2a080/block-v1:HarvardX+CS50P+Python+type@vertical+block@849f8f70f82c43cc972c2b2219280953">Week 9</a>'s lecture on the rest. Submit the <a href="https://cs50.harvard.edu/python/2022/project/">Final Project</a>.</li>
+</ol>
+</div>
+<p>
+    And if you have any questions, start a <a href="https://cs50.harvard.edu/python/communities">discussion</a> with classmates!
+</p>
+
+<div class="alert alert-warning border pb-2 w-100">
+    <details>
+        <summary class="mb-3">Looking for other courses to take before or after this one?</summary>
+        <ul>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/">CS50x: Introduction to Computer Science</a>, an introduction to the intellectual enterprises of computer science and the art of programming.</li>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/ai">CS50 AI: Introduction to Artificial Intelligence with Python</a>, an introductory course in artificial intelligence in which you'll learn to use machine learning in Python. Assumes that you've taken CS50x.</li>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/business">CS50 Business: Computer Science for Business Professionals</a>, CS50's introduction to computer science for business professionals.</li>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/cybersecurity">CS50 Cybersecurity: Introduction to Cybersecurity</a>, CS50's introduction to cybersecurity for technical and non-technical audiences alike.</li>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/games">CS50 Games: Introduction to Game Development</a>, in which you'll learn about the development of 2D and 3D interactive games as you explore the design of games such as Super Mario Bros., Pokémon, Angry Birds, and more. Assumes that you've taken CS50x.</li>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/law">CS50 Law: CS50 for Lawyers</a>, a variant of Harvard University's introduction to computer science, CS50, designed especially for lawyers (and law students).</li>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/python">CS50 Python: Introduction to Programming with Python</a>, an introduction to programming using a language called Python, which you can take before CS50x, during CS50x, or after CS50x.</li>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/scratch">CS50 Scratch: Introduction to Programming with Scratch</a>, a gentle introduction to programming that prepares you for subsequent courses in coding.</li>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/r">CS50R: Introduction to Programming with R</a>, CS50's introduction to programming using a language called R, a popular language for statistical computing and graphics in data science and other domains.</li>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/sql">CS50 SQL: Introduction to Databases</a>, CS50's introduction to databases using a language called SQL.</li>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/technology">CS50 Technology: Understanding Technology</a>, CS50's introduction to technology for students who don't (yet!) consider themselves computer persons.</li>
+            <li class="mb-3"><a class="font-weight-bold" href="https://cs50.edx.org/web">CS50 Web: Web Programming with Python and JavaScript</a>, in which you'll dive more deeply into the design and implementation of web apps with Python, JavaScript, and SQL using frameworks like Django, React, and Bootstrap. Assumes that you've taken CS50x.</li>
+        </ul>
+    </details>
+</div>
+
+<div class="alert alert-success border pb-2 w-100">
+    <details>
+        <summary class="mb-3">Looking for accreditation, transfer credit, and/or TA support?</summary>
+        <ul>
+            <li class="mb-3">
+                You can take CS50's Introduction to Computer Science, aka CS50x, as:
+                <ul>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/extension/csci/e/50">CSCI E-50</a> at <a href="https://www.extension.harvard.edu/">Harvard Extension School</a></li>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/summer/csci/s/50">CSCI S-50</a> at <a href="https://www.extension.harvard.edu/">Harvard Summer School</a></li>
+                </ul>
+            </li>
+            <li class="mb-3">
+                You can take CS50's Introduction to Artificial Intelligence with Python, aka CS50 AI, as:
+                <ul>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/extension/csci/e/80">CSCI E-80</a> at <a href="https://www.extension.harvard.edu/">Harvard Extension School</a></li>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/summer/csci/s/80">CSCI S-80</a> at <a href="https://www.extension.harvard.edu/">Harvard Summer School</a></li>
+                </ul>
+            </li>
+            <li class="mb-3">
+                You can take CS50's Computer Science for Business Professionals, aka CS50B, as:
+                <ul>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/extension/csci/e/1b">CSCI E-1b</a> at <a href="https://www.extension.harvard.edu/">Harvard Extension School</a></li>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/summer/csci/s/1b">CSCI S-1b</a> at <a href="https://www.extension.harvard.edu/">Harvard Summer School</a></li>
+                </ul>
+            </li>
+            <li class="mb-3">
+                You can take CS50's Introduction to Cybersecurity, aka CS50 Cybersecurity, as:
+                <ul>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/extension/csci/e/159">CSCI E-159</a> at <a href="https://www.extension.harvard.edu/">Harvard Extension School</a></li>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/summer/csci/s/159">CSCI S-159</a> at <a href="https://www.extension.harvard.edu/">Harvard Summer School</a></li>
+                </ul>
+            </li>
+            <li class="mb-3">
+                You can take CS50's Computer Science for Lawyers, aka CS50L, as:
+                <ul>
+                    <li>from <a class="font-weight-bold" href="https://execed.law.harvard.edu/computerscience/">Harvard Law School Executive Education</a></li>
+                </ul>
+            </li>
+            <li class="mb-3">
+                You can take CS50's Introduction to Programming with R, aka CS50R, as:
+                <ul>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/extension/csci/e/5a">CSCI E-5a</a> at <a href="https://www.extension.harvard.edu/">Harvard Extension School</a></li>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/summer/csci/s/5a">CSCI S-5a</a> at <a href="https://www.extension.harvard.edu/">Harvard Summer School</a></li>
+                </ul>
+            </li>
+            <li class="mb-3">
+                You can take CS50's Introduction to Databases with SQL, aka CS50 SQL, as:
+                <ul>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/extension/csci/e/151">CSCI E-151</a> at <a href="https://www.extension.harvard.edu/">Harvard Extension School</a></li>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/summer/csci/s/151">CSCI S-151</a> at <a href="https://www.extension.harvard.edu/">Harvard Summer School</a></li>
+                </ul>
+            </li>
+            <li class="mb-3">
+                You can take CS50's Web Programming with Python and JavaScript, aka CS50W, as:
+                <ul>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/extension/csci/e/33a">CSCI E-33a</a> at <a href="https://www.extension.harvard.edu/">Harvard Extension School</a></li>
+                    <li><a class="font-weight-bold" href="https://web.dce.harvard.edu/summer/csci/s/33a">CSCI S-33a</a> at <a href="https://www.extension.harvard.edu/">Harvard Summer School</a></li>
+                </ul>
+            </li>
+        </ul>
+    </details>
+</div>
+
+</div><ol id="courseHome-outline" class="list-unstyled" expandall="" sectionids="block-v1:HarvardX+CS50P+Python+type@chapter+block@7de1ad0fb26843bda429a24514f85be4" sections="[object Object]"><li><div open="" class="pgn_collapsible mb-2 collapsible-card-lg is-open"><div class="collapsible-trigger" role="button" tabindex="0" aria-expanded="true"><div class="d-flex row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left mt-1 text-success" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed section"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-7 ml-3 p-0 font-weight-bold text-dark-500"><span class="align-middle col-6">CS50P 2022</span><span class="sr-only">, Completed section</span></div></div><span class="collapsible-icon"><button aria-label="Close" class="btn-icon btn-icon-primary btn-icon-sm" type="button"><span class="btn-icon__icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="btn-icon__icon"><path d="M19 12.998H5v-2h14z" fill="currentColor"></path></svg></span></button></span></div><div class="pgn-transition-replace-group position-relative"><div style="padding: 0.1px 0px;"><div class="collapsible-body"><ol class="list-unstyled"><li><div class=""><div class="row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left text-success mt-1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-10 p-0 ml-3 text-break"><span class="align-middle"><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@5c4566382df54814ba604df6369ca2fc">Introduction</a></span><span class="sr-only">, Completed</span></div></div><div class="row w-100 m-0 ml-3 pl-3"><small class="text-body pl-2"></small></div></div></li><li><div class="mt-2 pt-2 border-top border-light"><div class="row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left text-success mt-1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-10 p-0 ml-3 text-break"><span class="align-middle"><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@744dad66fcce478a92fb1073b3d373fa">Functions, Variables</a></span><span class="sr-only">, Completed</span></div></div><div class="row w-100 m-0 ml-3 pl-3"><small class="text-body pl-2"></small></div></div></li><li><div class="mt-2 pt-2 border-top border-light"><div class="row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left text-success mt-1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-10 p-0 ml-3 text-break"><span class="align-middle"><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@d25e27c90c304b0293d1f8dbda47c1b6">Conditionals</a></span><span class="sr-only">, Completed</span></div></div><div class="row w-100 m-0 ml-3 pl-3"><small class="text-body pl-2"></small></div></div></li><li><div class="mt-2 pt-2 border-top border-light"><div class="row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left text-success mt-1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-10 p-0 ml-3 text-break"><span class="align-middle"><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@59c86cd0b84f463d814d6fd46a2c7eea">Loops</a></span><span class="sr-only">, Completed</span></div></div><div class="row w-100 m-0 ml-3 pl-3"><small class="text-body pl-2"></small></div></div></li><li><div class="mt-2 pt-2 border-top border-light"><div class="row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left text-success mt-1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-10 p-0 ml-3 text-break"><span class="align-middle"><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@bd6e4b312f2b4e8d9e89ec63708a367a">Exceptions</a></span><span class="sr-only">, Completed</span></div></div><div class="row w-100 m-0 ml-3 pl-3"><small class="text-body pl-2"></small></div></div></li><li><div class="mt-2 pt-2 border-top border-light"><div class="row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left text-success mt-1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-10 p-0 ml-3 text-break"><span class="align-middle"><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@ea6fc5c250bc4fc786575db3b93611a5">Libraries</a></span><span class="sr-only">, Completed</span></div></div><div class="row w-100 m-0 ml-3 pl-3"><small class="text-body pl-2"></small></div></div></li><li><div class="mt-2 pt-2 border-top border-light"><div class="row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left text-success mt-1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-10 p-0 ml-3 text-break"><span class="align-middle"><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@b9adc42a712943e798c96981fa2842f5">Unit Tests</a></span><span class="sr-only">, Completed</span></div></div><div class="row w-100 m-0 ml-3 pl-3"><small class="text-body pl-2"></small></div></div></li><li><div class="mt-2 pt-2 border-top border-light"><div class="row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left text-success mt-1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-10 p-0 ml-3 text-break"><span class="align-middle"><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@21490b9cab9d44f5b67a3b0999aecfc3">File I/O</a></span><span class="sr-only">, Completed</span></div></div><div class="row w-100 m-0 ml-3 pl-3"><small class="text-body pl-2"></small></div></div></li><li><div class="mt-2 pt-2 border-top border-light"><div class="row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left text-success mt-1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-10 p-0 ml-3 text-break"><span class="align-middle"><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@5b8a1290b6d343078c21bba7944f7792">Regular Expressions</a></span><span class="sr-only">, Completed</span></div></div><div class="row w-100 m-0 ml-3 pl-3"><small class="text-body pl-2"></small></div></div></li><li><div class="mt-2 pt-2 border-top border-light"><div class="row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left text-success mt-1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-10 p-0 ml-3 text-break"><span class="align-middle"><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@2e3c5785a8484c8988f8fac546929f35">Object-Oriented Programming</a></span><span class="sr-only">, Completed</span></div></div><div class="row w-100 m-0 ml-3 pl-3"><small class="text-body pl-2"></small></div></div></li><li><div class="mt-2 pt-2 border-top border-light"><div class="row w-100 m-0"><div class="col-auto p-0"><span class="pgn__icon pgn__icon__sm float-left text-success mt-1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-label="Completed"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z" fill="currentColor"></path></svg></span></div><div class="col-10 p-0 ml-3 text-break"><span class="align-middle"><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/block-v1:HarvardX+CS50P+Python+type@sequential+block@1e2042142d3d4008a6b129c3c3f2a080">Et Cetera</a></span><span class="sr-only">, Completed</span></div></div><div class="row w-100 m-0 ml-3 pl-3"><small class="text-body pl-2"></small></div></div></li></ol></div></div></div></div></li></ol></div><div class="col col-12 col-md-4"><div id="courseHome-weeklyLearningGoal" data-testid="weekly-learning-goal-card" tabindex="-1" class="row w-100 m-0 mb-3 raised-card pgn__card pgn__card-light card"><div class="pgn__card-header"><div class="pgn__card-header-content"><div class="pgn__card-header-title-sm"><div id="set-weekly-goal-header">Set a weekly learning goal</div></div><div class="pgn__card-header-subtitle-sm">Setting a goal motivates you to finish the course. You can always change it later.</div></div></div><div class="pgn__card-section text-gray-700 small"><div role="radiogroup" aria-labelledby="set-weekly-goal-header" class="flag-button-container m-0 p-0"><button type="button" class="flag-button row w-100 align-content-between m-1.5 py-3.5" aria-checked="false" role="radio" data-testid="weekly-learning-goal-input-Casual"><div class="row w-100 m-0 justify-content-center pb-1"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="17" fill="none"><path fill="#002B2B" d="M9.4 2 9 0H0v17h2v-7h5.6l.4 2h7V2zm3.6 8H9.64l-.4-2H2V2h5.36l.4 2H13z"></path></svg></div><div class="row w-100 m-0 justify-content-center small text-gray-700 pb-1">Casual</div><div class="row w-100 m-0 justify-content-center micro text-gray-500">1 day a week</div></button><button type="button" class="flag-button row w-100 align-content-between m-1.5 py-3.5" aria-checked="false" role="radio" data-testid="weekly-learning-goal-input-Regular"><div class="row w-100 m-0 justify-content-center pb-1"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="17" fill="none"><path fill="#002B2B" d="M9.4 2 9 0H0v17h2v-7h5.6l.4 2h7V2zm3.6 8H9.64l-.4-2H2V2h5.36l.4 2H13z"></path><path d="M9.66 9.987c-.002-.004-.095-.456-.206-1.004l-.202-.996-3.614-.008-3.615-.008V2.023l2.664.007 2.663.008.197.99.197.988h5.24v5.979h-1.66c-.914 0-1.663-.004-1.665-.008" style="fill: gray; fill-rule: evenodd; stroke-width: 0.0150977;"></path></svg></div><div class="row w-100 m-0 justify-content-center small text-gray-700 pb-1">Regular</div><div class="row w-100 m-0 justify-content-center micro text-gray-500">3 days a week</div></button><button type="button" class="flag-button row w-100 align-content-between m-1.5 py-3.5" aria-checked="false" role="radio" data-testid="weekly-learning-goal-input-Intense"><div class="row w-100 m-0 justify-content-center pb-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path fill="#000" d="M14.4 6 14 4H5v17h2v-7h5.6l.4 2h7V6z"></path></svg></div><div class="row w-100 m-0 justify-content-center small text-gray-700 pb-1">Intense</div><div class="row w-100 m-0 justify-content-center micro text-gray-500">5 days a week</div></button></div><div class="d-flex pt-3"><div class="d-inline-flex flex-column"><div class="pgn__form-checkbox pgn__form-switch pgn__form-control-disabled"><input type="checkbox" disabled="" role="switch" id="form-field1" class="pgn__form-switch-input"><div><label class="pgn__form-label" for="form-field1"><small>Set a goal reminder</small></label></div></div></div></div></div></div><section class="mb-4"><h2 class="h4">Course Tools</h2><ul class="list-unstyled"><li class="small"><a href="https://courses.edx.org/courses/course-v1:HarvardX+CS50P+Python/bookmarks/"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bookmark" class="svg-inline--fa fa-bookmark fa-fw mr-2" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 512V48C0 21.49 21.49 0 48 0h288c26.51 0 48 21.49 48 48v464L192 400 0 512z"></path></svg>Bookmarks</a></li><li class="small"><a href="https://courses.edx.org/financial-assistance/"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info" class="svg-inline--fa fa-info fa-fw mr-2" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z"></path></svg>Financial Assistance</a></li><li class="small" id="courseHome-launchTourLink"><button type="button" class="p-0 false btn btn-link btn-inline"><span class="pgn__icon mr-2" style="height: 18px; width: 18px;"><svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-hidden="true"><path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0Zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8Zm-5.5-2.5 7.51-3.49L15.5 4.5 7.99 7.99 4.5 15.5ZM10 8.9c.61 0 1.1.49 1.1 1.1 0 .61-.49 1.1-1.1 1.1-.61 0-1.1-.49-1.1-1.1 0-.61.49-1.1 1.1-1.1Z" fill="currentColor"></path></svg></span>Launch tour</button></li></ul></section><div><section class="upgrade-notification small pgn__card pgn__card-light card mb-4 rounded"><div id="courseHome-upgradeNotification"><h2 class="upgrade-notification-header" id="outline-sidebar-upgrade-header">Pursue a verified certificate</h2><div class="certificate-preview border m-4 mt-5 p-3 undefined"><div class="d-flex justify-content-between" data-testid="certificate-preview-header"><img alt="Verified Certificate logo" class="verified-certificate-logo" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/verified-certificate-logo.svg"><span class="sr-only">Verified Certificate</span><div class="mb-4"><div class="sr-only">Supported by the following organizations</div><img alt="HarvardX logo" class="organization-logo" data-testid="organization-logo" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/44022f13-20df-4666-9111-cede3e5dc5b6-770e00385e7e.png"></div></div><div class="d-flex justify-content-between"><div class="certificate-statement"><div class="certificate-statement-container d-flex flex-column"><span class="certificate-statement-detail">This is to certify that</span><strong class="certificate-statement-detail certificate-recipient font-weight-bold">Romeo Rosete</strong><span class="certificate-statement-detail">successfully completed and received a passing grade in</span><span class="certificate-course font-weight-bold"><span>CS50P</span>:<span>CS50's Introduction to Programming with Python</span></span><span class="certificate-statement-detail">a course of study offered by HarvardX, an online learning initiative of Harvard University.</span></div></div><div class="signatories"><div class="sr-only">Noted by</div><div class="signatory"><img class="signatory-signature" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/de11cba960f8ceede7e4f34128d38ca8.png" alt="Maurilio Pugliesi"><div class="signatory-name">Maurilio Pugliesi</div><div class="signatory-credentials"><div>Professor</div><div class="font-italic">UniversityX</div></div></div><div class="signatory"><img class="signatory-signature" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/de11cba960f8ceede7e4f34128d38ca8.png" alt="Justine Doe, Ph.D."><div class="signatory-name">Justine Doe, Ph.D.</div><div class="signatory-credentials"><div>Professor</div><div class="font-italic">UniversityX</div></div></div></div></div><div class="certificate-identifiers"><ul class="d-flex no-bullets stamps pt-3"><li class="stamp"><img class="platform-logo" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/logo.svg" alt="edX"></li><li class="stamp d-flex flex-column"><span class="title">Verified Certificate</span><span class="emphasized">Issued Month / Year</span></li><li class="stamp d-flex flex-column"><span class="title">Valid Certificate ID</span><span class="emphasized">12345678901234567890</span></li></ul></div><div class="preview-watermark"><span>PREVIEW</span></div></div><h3 class="ml-4"></h3><div class="upgrade-notification-message"><div class="pgn__vstack pgn__stack-gap--3 m-4" role="list"><div class="pgn__hstack pgn__stack-gap--2" role="listitem"><span class="pgn__icon pgn__icon__xs text-brand-500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-hidden="true"><path d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8Z" fill="currentColor"></path></svg></span><span>Unlimited access to all course materials</span></div><div class="pgn__hstack pgn__stack-gap--2" role="listitem"><span class="pgn__icon pgn__icon__xs text-brand-500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-hidden="true"><path d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8Z" fill="currentColor"></path></svg></span><span>Shareable <a class="pgn__hyperlink default-link standalone-link" target="_self" href="https://www.edx.org/verified-certificate">verified certificate</a></span></div></div></div><div class="upgrade-notification-button"><a href="https://commerce-coordinator.edx.org/lms/payment_page_redirect/?sku=85FB179&amp;course_run_key=course-v1%3AHarvardX%2BCS50P%2BPython&amp;code=NEW2EDX" class="btn btn-primary btn-block"><div>Upgrade for <span class="sr-only">Original price: $299, discount price: $209.30</span><span aria-hidden="true"><span>$209.30</span> (<del>$299</del>)</span></div></a></div><div class="text-center discount-info">Use code <span class="font-weight-bold">NEW2EDX</span> at checkout</div></div></section></div><section class="mb-4"><div id="courseHome-dates"><h2 class="h4">Important dates</h2><ol class="list-unstyled"><li class="p-0 mb-3 small text-dark-500"><div class="row"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="calendar-alt" class="svg-inline--fa fa-calendar-alt fa-fw ml-3 mt-1 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"></path></svg><div class="ml-1 font-weight-bold">Sun, Dec 21, 2025</div></div><div class="row ml-4 pr-2"><div class="date-summary-text"><div class="font-weight-bold mt-2">Verification Upgrade Deadline</div></div><div class="date-summary-text mt-1">You are still eligible to upgrade to a Verified Certificate! Pursue it to highlight the knowledge and skills you gain in this course.</div><a href="https://commerce-coordinator.edx.org/lms/payment_page_redirect/?sku=85FB179&amp;course_run_key=course-v1%3AHarvardX%2BCS50P%2BPython" class="description-link">Upgrade to Verified Certificate</a></div></li><li class="p-0 mb-3 small text-dark-500"><div class="row"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="calendar-alt" class="svg-inline--fa fa-calendar-alt fa-fw ml-3 mt-1 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"></path></svg><div class="ml-1 font-weight-bold">Wed, Dec 31, 2025</div></div><div class="row ml-4 pr-2"><div class="date-summary-text"><div class="font-weight-bold mt-2">Course ends</div></div><div class="date-summary-text mt-1">After the course ends, the course content will be archived and no longer active.</div></div></li></ol><a class="font-weight-bold ml-4 pl-1 small" href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/dates">View all course dates</a></div></section><section class="mb-4">
+<ul>
+    <li><a href="https://cs50.edx.org/python">edX</a></li>
+    <li><a href="https://cs50.harvard.edu/python">OpenCourseWare</a></li>
+    <li><a href="https://www.youtube.com/playlist?list=PLhQjrBD2T3817j24-GogXmWqO5Q5vYy0V">YouTube</a></li>
+</ul>
+
+<hr>
+
+<ul>
+    <li><a href="https://cs50.noticeable.news/">Changelog</a></li>
+    <li><a href="https://cs50.statuspage.io/">Status Page</a></li>
+</ul>
+
+<hr>
+
+<h2 class="h4"><a href="https://cs50.harvard.edu/python/communities/">Communities</a></h2>
+<ul>
+    <li><a href="https://cs50.bsky.social/">Bluesky</a></li>
+    <li><a href="https://www.clubhouse.com/club/cs50">Clubhouse</a></li>
+    <li><a href="https://discord.gg/cs50">Discord</a> <span class="badge bg-light ml-1">Q&amp;A</span></li>
+    <li><a href="https://cs50.edx.org/ed">Ed</a> <span class="badge bg-light ml-1">Q&amp;A</span></li>
+    <li><a href="https://www.facebook.com/groups/cs50/">Facebook Group</a> <span class="badge bg-light ml-1">Q&amp;A</span></li>
+    <li><a href="https://www.facebook.com/cs50/">Facebook Page</a></li>
+    <li><a href="https://github.com/cs50">GitHub</a></li>
+    <li><a href="https://gitter.im/cs50/x">Gitter</a> <span class="badge bg-light ml-1">Q&amp;A</span></li>
+    <li><a href="https://instagram.com/cs50">Instagram</a></li>
+    <li><a href="https://www.linkedin.com/groups/7437240/">LinkedIn Group</a></li>
+    <li><a href="https://www.linkedin.com/school/CS50/">LinkedIn Page</a></li>
+    <li><a href="https://cs50.medium.com/">Medium</a></li>
+    <li><a href="https://www.quora.com/topic/CS50">Quora</a></li>
+    <li><a href="https://www.reddit.com/r/cs50/">Reddit</a> <span class="badge bg-light ml-1">Q&amp;A</span></li>
+    <li><a href="https://cs50.edx.org/slack">Slack</a> <span class="badge bg-light ml-1">Q&amp;A</span></li>
+    <li><a href="https://www.snapchat.com/add/cs50">Snapchat</a></li>
+    <li><a href="https://soundcloud.com/cs50">SoundCloud</a></li>
+    <li><a href="https://cs50.stackexchange.com/">Stack Exchange</a> <span class="badge bg-light ml-1">Q&amp;A</span></li>
+    <li><a href="https://www.tiktok.com/@cs50">TikTok</a></li>
+    <li><a href="https://t.me/cs50x">Telegram</a></li>
+    <li><a href="https://www.threads.net/@cs50">Threads</a></li>
+    <li><a href="https://twitter.com/cs50">Twitter</a></li>
+    <li><a href="http://www.youtube.com/subscription_center?add_user=cs50tv">YouTube</a></li>
+</ul>
+
+<hr>
+
+<a href="https://cs50.harvardshop.com/"><img alt="The Harvard Shop" class="mw-100" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/4KpZG8h.png"></a>
+</section></div></div></div></main><footer role="contentinfo" aria-label="edX Home" class="footer d-flex justify-content-center border-top py-3 px-4"><div class="container-fluid d-grid"><div class="area-1"><a href="https://edx.org/" aria-label="edX Home"><img src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/logo-trademark.svg" alt="edX Logo" style="max-height: 45px;"></a></div><div class="area-2"><h2>edX</h2><ul class="list-unstyled p-0 m-0"><li><a href="https://edx.org/about-us">About</a></li><li><a href="https://edx.org/affiliate-program">Affiliates</a></li><li><a href="https://business.edx.org/?utm_campaign=edX.org+Referral&amp;utm_medium=Footer&amp;utm_source=learning.edx.org">edX for Business</a></li><li><a href="http://open.edx.org/">Open edX</a></li><li><a href="https://edx.org/careers">Careers</a></li><li><a href="https://edx.org/news-announcements">News</a></li></ul></div><div class="area-3"><h2>Legal</h2><ul class="list-unstyled p-0 m-0"><li><a href="https://edx.org/edx-terms-service">Terms of Service &amp; Honor Code</a></li><li><a href="https://edx.org/edx-privacy-policy">Privacy Policy</a></li><li><a href="https://edx.org/accessibility">Accessibility Policy</a></li><li><a href="https://edx.org/trademarks">Trademark Policy</a></li><li><a href="https://edx.org/sitemap">Sitemap</a></li><li><a href="https://edx.org/edx-privacy-policy/cookies">Cookie Policy</a></li><li><button id="footer-dns-link" type="button" class="px-0 text-left text-decoration-none btn btn-link btn-inline">Your Privacy Choices</button></li></ul></div><div class="area-4"><h2>Connect</h2><ul class="list-unstyled p-0 m-0"><li><a href="https://www.edx.org/resources">Idea Hub</a></li><li><a href="https://courses.edx.org/support/contact_us">Contact Us</a></li><li><a href="https://support.edx.org/">Help Center</a></li><li><a href="https://edx.org/policy/security">Security</a></li><li><a href="https://edx.org/media-kit">Media Kit</a></li></ul></div><div class="area-5"><ul class="d-flex flex-row justify-content-between list-unstyled max-width-222 p-0 mb-4"><li><a href="http://www.facebook.com/EdxOnline" title="Facebook" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="square-facebook" class="svg-inline--fa fa-square-facebook fa-2x social-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64h98.2V334.2H109.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H255V480H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"></path></svg><span class="sr-only">Like edX on Facebook</span></a></li><li><a href="https://twitter.com/edXOnline" title="X (formerly Twitter)" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="square-x-twitter" class="svg-inline--fa fa-square-x-twitter fa-2x social-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm297.1 84L257.3 234.6 379.4 396H283.8L209 298.1 123.3 396H75.8l111-126.9L69.7 116h98l67.7 89.5L313.6 116h47.5zM323.3 367.6L153.4 142.9H125.1L296.9 367.6h26.3z"></path></svg><span class="sr-only">Follow edX on X (formerly Twitter)</span></a></li><li><a href="http://www.linkedin.com/company/edx" title="LinkedIn" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin" class="svg-inline--fa fa-linkedin fa-2x social-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg><span class="sr-only">Follow edX on LinkedIn</span></a></li><li><a href="https://www.instagram.com/edxonline/" title="Instagram" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram" class="svg-inline--fa fa-instagram fa-2x social-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg><span class="sr-only">Follow edX on Instagram</span></a></li><li><a href="http://www.reddit.com/r/edx" title="Reddit" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="square-reddit" class="svg-inline--fa fa-square-reddit fa-2x social-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32zM305.9 166.4c20.6 0 37.3-16.7 37.3-37.3s-16.7-37.3-37.3-37.3c-18 0-33.1 12.8-36.6 29.8c-30.2 3.2-53.8 28.8-53.8 59.9l0 .2c-32.8 1.4-62.8 10.7-86.6 25.5c-8.8-6.8-19.9-10.9-32-10.9c-28.9 0-52.3 23.4-52.3 52.3c0 21 12.3 39 30.1 47.4c1.7 60.7 67.9 109.6 149.3 109.6s147.6-48.9 149.3-109.7c17.7-8.4 29.9-26.4 29.9-47.3c0-28.9-23.4-52.3-52.3-52.3c-12 0-23 4-31.9 10.8c-24-14.9-54.3-24.2-87.5-25.4l0-.1c0-22.2 16.5-40.7 37.9-43.7l0 0c3.9 16.5 18.7 28.7 36.3 28.7zM155 248.1c14.6 0 25.8 15.4 25 34.4s-11.8 25.9-26.5 25.9s-27.5-7.7-26.6-26.7s13.5-33.5 28.1-33.5zm166.4 33.5c.9 19-12 26.7-26.6 26.7s-25.6-6.9-26.5-25.9c-.9-19 10.3-34.4 25-34.4s27.3 14.6 28.1 33.5zm-42.1 49.6c-9 21.5-30.3 36.7-55.1 36.7s-46.1-15.1-55.1-36.7c-1.1-2.6 .7-5.4 3.4-5.7c16.1-1.6 33.5-2.5 51.7-2.5s35.6 .9 51.7 2.5c2.7 .3 4.5 3.1 3.4 5.7z"></path></svg><span class="sr-only">Subscribe to the edX subreddit</span></a></li></ul><ul class="d-flex flex-row justify-content-between list-unstyled max-width-264 p-0 mb-5"><li><a href="https://play.google.com/store/apps/details?id=org.edx.mobile" rel="noopener noreferrer" target="_blank"><img class="max-height-39" alt="Download the edX mobile app from Google Play" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/google_play_badge_45.6ea466e328da.png"></a></li><li><a href="https://itunes.apple.com/us/app/edx/id945480667?mt=8" rel="noopener noreferrer" target="_blank"><img class="max-height-39" alt="Download the edX mobile app from the Apple App Store" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/app_store_badge_135x40.d0558d910630.svg"></a></li></ul><p>© 2025 edX LLC. All rights reserved.<br>深圳市恒宇博科技有限公司 <a href="https://beian.miit.gov.cn/" style="text-decoration: underline;">粤ICP备17044299号-2</a></p></div></div></footer> </div></div></div></div><script type="text/javascript">var PARAGON_THEME = { "paragon": { "version": "22.16.1", "themeUrls": { "core": {}, "variants": {} } }, "brand": { "version": "2.1.3", "themeUrls": { "core": {}, "variants": {} } } };</script><script defer="" src="./Course _ CS50&#39;s Introduction to Programming with Python _ edX Romeo Rosete_files/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9267b389cc3b36d7&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.1.0&quot;,&quot;token&quot;:&quot;7e7e0d8a3be64c7ba2cf01bcb532c718&quot;}" crossorigin="anonymous"></script>
+<div id="toast-root" class="toast-container"></div></body></html>
